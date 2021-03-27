@@ -8,6 +8,8 @@ SVGKDefine define some common macro used for private header.
 #define SVGKDefine_Private_h
 
 #import "SVGKDefine.h"
+
+#if INTEGRATE_LUMBERJACK
 @import CocoaLumberjack;
 
 // These macro is only used inside framework project, does not expose to public header and effect user's define
@@ -31,5 +33,15 @@ static const int ddLogLevel = DDLogLevelWarning;
 #define NSStringFromCGSize(size) NSStringFromSize(size)
 #define NSStringFromCGPoint(point) NSStringFromPoint(point)
 #endif
+
+#else // INTEGRATE_LUMBERJACK
+
+#define SVGKitLogError(frmt, ...)
+#define SVGKitLogWarn(frmt, ...)
+#define SVGKitLogInfo(frmt, ...)
+#define SVGKitLogDebug(frmt, ...)
+#define SVGKitLogVerbose(frmt, ...)
+
+#endif // INTEGRATE_LUMBERJACK
 
 #endif /* SVGKDefine_Private_h */
